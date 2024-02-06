@@ -11,6 +11,7 @@ export class Destination {
 
   @Prop({ required: true })
   location: string;
+
   @Prop({ required: true })
   days: string;
 

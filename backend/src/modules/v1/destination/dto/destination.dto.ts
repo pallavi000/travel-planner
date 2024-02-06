@@ -13,7 +13,7 @@ export class destinationDto {
   detail: string;
 
   @IsArray()
-  hotels: Array<any>;
+  hotels: string[];
 
   @IsString()
   image: string;
