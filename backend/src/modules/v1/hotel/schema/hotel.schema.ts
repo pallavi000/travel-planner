@@ -28,5 +28,5 @@ export class Hotel {
 const HotelSchema = SchemaFactory.createForClass(Hotel);
 export const HotelModel = {
   name: Hotel.name,
-  schema: Hotel,
+  schema: HotelSchema,
 };

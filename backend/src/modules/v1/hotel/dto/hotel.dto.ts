@@ -1,4 +1,5 @@
-import { IsString } from 'class-validator';
+import { IsArray, IsString } from 'class-validator';
+import { roomDto } from '../../room/dto/room.dto';
 
 export class hotelDto {
   @IsString()
@@ -7,8 +8,8 @@ export class hotelDto {
   @IsString()
   image: string;
 
-  @IsString()
-  room: string;
+  @IsArray()
+  room: [];
 
   @IsString()
   address: string;
