@@ -63,4 +63,14 @@ export class RoomController {
       throw error;
     }
   }
+
+  @Get('/type/:type')
+  async findRoomByType(@Param('type') roomType: string) {
+    try {
+      const rooms = await this.roomService.findRoomByType(roomType);
+      return rooms;
+    } catch (error) {
+      throw error;
+    }
+  }
 }

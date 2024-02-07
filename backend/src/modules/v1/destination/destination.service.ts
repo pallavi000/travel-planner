@@ -39,4 +39,11 @@ export class DestinationService {
     const destination = await this.destinationModel.findByIdAndDelete(id);
     return destination;
   }
+
+  async findDestinationByName(name: string) {
+    const destinations = await this.destinationModel.find({
+      title: { $regex: name, $options: 'i' },
+    });
+    return destinations;
+  }
 }

@@ -34,4 +34,11 @@ export class RoomService {
     const room = await this.roomModel.findByIdAndDelete(id);
     return room;
   }
+
+  async findRoomByType(type: string) {
+    const destinations = await this.roomModel.find({
+      type: type,
+    });
+    return destinations;
+  }
 }

@@ -75,7 +75,7 @@ export class HotelController {
     }
   }
 
-  @Get('/destination/:id')
+  @Get(':title')
   async searchHotelByName(@Param('name') name: string) {
     try {
       const hotels = await this.hotelService.findHotelByName(name);

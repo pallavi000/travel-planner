@@ -71,4 +71,15 @@ export class DestinationController {
       throw error;
     }
   }
+
+  @Get(':name')
+  async findDestinationByName(@Param('name') name: string) {
+    try {
+      const destinations =
+        await this.destinationService.findDestinationByName(name);
+      return destinations;
+    } catch (error) {
+      throw error;
+    }
+  }
 }
