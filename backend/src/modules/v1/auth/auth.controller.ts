@@ -19,6 +19,7 @@ import { UserService } from '../user/user.service';
 import { loginDto } from './dto/login.dto';
 import { registerDto } from './dto/register.dto';
 import { AuthGuard } from 'src/guards/auth/auth.guard';
+import { ApiError } from 'src/exceptions/api-error.exception';
 
 @Controller('auth')
 export class AuthController {
@@ -40,7 +41,7 @@ export class AuthController {
       const token = this.authService.generateToken(payload);
       return { token, user: payload };
     } catch (error) {
-      throw error;
+      throw new ApiError(error);
     }
   }
 
@@ -62,7 +63,7 @@ export class AuthController {
       const token = this.authService.generateToken(payload);
       return { token, user: payload };
     } catch (error) {
-      throw error;
+      throw new ApiError(error);
     }
   }
 
@@ -73,7 +74,7 @@ export class AuthController {
       const user = await this.userService.getUserById(req.user._id);
       return user;
     } catch (error) {
-      throw error;
+      throw new ApiError(error);
     }
   }
 }

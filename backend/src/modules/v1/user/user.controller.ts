@@ -9,6 +9,7 @@ import {
 } from '@nestjs/common';
 import { UserService } from './user.service';
 import { userDto } from './dto/user.dto';
+import { ApiError } from 'src/exceptions/api-error.exception';
 
 @Controller('users')
 export class UserController {
@@ -20,7 +21,7 @@ export class UserController {
       const user = await this.userService.fetchAllUsers();
       return user;
     } catch (error) {
-      throw error;
+      throw new ApiError(error);
     }
   }
 
@@ -30,7 +31,7 @@ export class UserController {
       const user = await this.userService.createUser(body);
       return user;
     } catch (error) {
-      throw error;
+      throw new ApiError(error);
     }
   }
 
@@ -40,7 +41,7 @@ export class UserController {
       const user = await this.userService.getUserById(userId);
       return user;
     } catch (error) {
-      throw error;
+      throw new ApiError(error);
     }
   }
 
@@ -50,7 +51,7 @@ export class UserController {
       const user = await this.userService.updateUserById(userId, body);
       return user;
     } catch (error) {
-      throw error;
+      throw new ApiError(error);
     }
   }
 
@@ -60,7 +61,7 @@ export class UserController {
       const user = await this.userService.deleteUserById(userId);
       return user;
     } catch (error) {
-      throw error;
+      throw new ApiError(error);
     }
   }
 }

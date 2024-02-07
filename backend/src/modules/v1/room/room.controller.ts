@@ -9,6 +9,7 @@ import {
 } from '@nestjs/common';
 import { RoomService } from './room.service';
 import { roomDto } from './dto/room.dto';
+import { ApiError } from 'src/exceptions/api-error.exception';
 
 @Controller('rooms')
 export class RoomController {
@@ -20,7 +21,7 @@ export class RoomController {
       const rooms = await this.roomService.findAllRoom();
       return rooms;
     } catch (error) {
-      throw error;
+      throw new ApiError(error);
     }
   }
 
@@ -30,7 +31,7 @@ export class RoomController {
       const room = await this.roomService.createRoom(body);
       return room;
     } catch (error) {
-      throw error;
+      throw new ApiError(error);
     }
   }
 
@@ -40,7 +41,7 @@ export class RoomController {
       const room = await this.roomService.findRoomById(roomId);
       return room;
     } catch (error) {
-      throw error;
+      throw new ApiError(error);
     }
   }
 
@@ -50,7 +51,7 @@ export class RoomController {
       const room = await this.roomService.updateRoomById(roomId, body);
       return room;
     } catch (error) {
-      throw error;
+      throw new ApiError(error);
     }
   }
 
@@ -60,7 +61,7 @@ export class RoomController {
       const room = await this.roomService.deleteRoomById(roomId);
       return room;
     } catch (error) {
-      throw error;
+      throw new ApiError(error);
     }
   }
 
@@ -70,7 +71,7 @@ export class RoomController {
       const rooms = await this.roomService.findRoomByType(roomType);
       return rooms;
     } catch (error) {
-      throw error;
+      throw new ApiError(error);
     }
   }
 }

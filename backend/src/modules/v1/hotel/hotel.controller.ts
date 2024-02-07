@@ -9,6 +9,7 @@ import {
 } from '@nestjs/common';
 import { HotelService } from './hotel.service';
 import { hotelDto } from './dto/hotel.dto';
+import { ApiError } from 'src/exceptions/api-error.exception';
 
 @Controller('hotels')
 export class HotelController {
@@ -20,7 +21,7 @@ export class HotelController {
       const hotels = await this.hotelService.findAllHotels();
       return hotels;
     } catch (error) {
-      throw error;
+      throw new ApiError(error);
     }
   }
 
@@ -30,7 +31,7 @@ export class HotelController {
       const hotel = await this.hotelService.createHotel(body);
       return hotel;
     } catch (error) {
-      throw error;
+      throw new ApiError(error);
     }
   }
 
@@ -40,7 +41,7 @@ export class HotelController {
       const hotel = await this.hotelService.findHotelById(hotelId);
       return hotel;
     } catch (error) {
-      throw error;
+      throw new ApiError(error);
     }
   }
 
@@ -50,7 +51,7 @@ export class HotelController {
       const hotel = await this.hotelService.updateHotelById(hotelId, body);
       return hotel;
     } catch (error) {
-      throw error;
+      throw new ApiError(error);
     }
   }
 
@@ -60,7 +61,7 @@ export class HotelController {
       const hotel = await this.hotelService.deleteHotelById(hotelId);
       return hotel;
     } catch (error) {
-      throw error;
+      throw new ApiError(error);
     }
   }
 
@@ -71,7 +72,7 @@ export class HotelController {
         await this.hotelService.findHotelsByDestinationId(destinationId);
       return hotels;
     } catch (error) {
-      throw error;
+      throw new ApiError(error);
     }
   }
 
@@ -81,7 +82,7 @@ export class HotelController {
       const hotels = await this.hotelService.findHotelByName(name);
       return hotels;
     } catch (error) {
-      throw error;
+      throw new ApiError(error);
     }
   }
 }

@@ -9,6 +9,7 @@ import {
 } from '@nestjs/common';
 import { DestinationService } from './destination.service';
 import { destinationDto } from './dto/destination.dto';
+import { ApiError } from 'src/exceptions/api-error.exception';
 
 @Controller('destinations')
 export class DestinationController {
@@ -20,7 +21,7 @@ export class DestinationController {
       const destinations = await this.destinationService.findAllDestinations();
       return destinations;
     } catch (error) {
-      throw error;
+      throw new ApiError(error);
     }
   }
 
@@ -30,7 +31,7 @@ export class DestinationController {
       const destination = await this.destinationService.createDestination(body);
       return destination;
     } catch (error) {
-      throw error;
+      throw new ApiError(error);
     }
   }
 
@@ -41,7 +42,7 @@ export class DestinationController {
         await this.destinationService.findDestinationById(destinationId);
       return destination;
     } catch (error) {
-      throw error;
+      throw new ApiError(error);
     }
   }
 
@@ -57,7 +58,7 @@ export class DestinationController {
       );
       return destination;
     } catch (error) {
-      throw error;
+      throw new ApiError(error);
     }
   }
 
@@ -68,7 +69,7 @@ export class DestinationController {
         await this.destinationService.deleteDestinationById(destinationId);
       return destination;
     } catch (error) {
-      throw error;
+      throw new ApiError(error);
     }
   }
 
@@ -79,7 +80,7 @@ export class DestinationController {
         await this.destinationService.findDestinationByName(name);
       return destinations;
     } catch (error) {
-      throw error;
+      throw new ApiError(error);
     }
   }
 }
