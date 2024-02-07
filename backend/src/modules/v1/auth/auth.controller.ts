@@ -18,6 +18,7 @@ import { IExpressRequest } from 'src/types/auth';
 import { UserService } from '../user/user.service';
 import { loginDto } from './dto/login.dto';
 import { registerDto } from './dto/register.dto';
+import { AuthGuard } from 'src/guards/auth/auth.guard';
 
 @Controller('auth')
 export class AuthController {
@@ -60,6 +61,17 @@ export class AuthController {
       const { password, ...payload } = user;
       const token = this.authService.generateToken(payload);
       return { token, user: payload };
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  @Get('/profile')
+  @UseGuards(AuthGuard)
+  async getProfile(@Req() req: IExpressRequest) {
+    try {
+      const user = await this.userService.getUserById(req.user._id);
+      return user;
     } catch (error) {
       throw error;
     }
