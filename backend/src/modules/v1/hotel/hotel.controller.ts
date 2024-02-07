@@ -63,4 +63,25 @@ export class HotelController {
       throw error;
     }
   }
+
+  @Get('/destination/:id')
+  async fetchHotelsByDestinationId(@Param('id') destinationId: string) {
+    try {
+      const hotels =
+        await this.hotelService.findHotelsByDestinationId(destinationId);
+      return hotels;
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  @Get('/destination/:id')
+  async searchHotelByName(@Param('name') name: string) {
+    try {
+      const hotels = await this.hotelService.findHotelByName(name);
+      return hotels;
+    } catch (error) {
+      throw error;
+    }
+  }
 }

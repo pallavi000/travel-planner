@@ -23,6 +23,11 @@ export class Hotel {
 
   @Prop({ type: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Room' }] })
   room: mongoose.Types.ObjectId[];
+
+  @Prop({
+    type: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Destination' }],
+  })
+  destination: mongoose.Types.ObjectId;
 }
 
 const HotelSchema = SchemaFactory.createForClass(Hotel);

@@ -22,4 +22,7 @@ export class hotelDto {
 
   @IsString()
   email: string;
+
+  @IsString()
+  destination: string;
 }

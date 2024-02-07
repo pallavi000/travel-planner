@@ -34,4 +34,16 @@ export class HotelService {
     const hotel = await this.hotelModel.findByIdAndDelete(id);
     return hotel;
   }
+
+  async findHotelsByDestinationId(id: string) {
+    const hotels = await this.hotelModel.find({ destination: id });
+    return hotels;
+  }
+
+  async findHotelByName(name: string) {
+    const hotels = await this.hotelModel.find({
+      title: { $regex: name, $options: 'i' },
+    });
+    return hotels;
+  }
 }
